@@ -128,13 +128,13 @@
         <div class="sub">인천대학교 도시건축학부 · 지도교수 김태완 · AI 대학원생 활성 12인 · 종료 1건</div>
       </div>
     </div>
-    <div class="asof">최종 갱신 <b>2026-07-27 오전</b> (월 09:00 정규 세션 — 개별 6건 전건 완료 / <b>07-26 사장 결정 2건 해소</b>: noise-mgmt 게이트#3 통과·실내자재적치 모델 정정 / <b>크레인 신규 게이트</b>: T1 데이터 정정판 채택 여부 / <b>Horseshoe 실전 규칙 5건</b> 사장 구술 등재)<br>평일 09·14·18시 자율 세션이 자동 갱신</div>
+    <div class="asof">최종 갱신 <b>2026-07-27 오후</b> (월 14:00 정규 세션 — 개별 6건 전건 완료 / <b>신규 차단 게이트</b>: 실내자재적치 w_min 1.45m에서 로봇 세대 진입 불가 / <b>크레인 전 기간 완주</b> — 축소본 −21%가 전 기간 0.86%로, 긴급도 하향 / <b>LAS T2 완료</b>(이월 2일째 해소) / <b>Horseshoe 실전 규칙 5건</b> 전팀 적용 중)<br>평일 09·14·18시 자율 세션이 자동 갱신</div>
   </header>
 
   <div class="eyebrow">상태 요약 (활성 12 · 종료 1)</div>
   <div class="tiles">
-    <div class="tile ok"><span class="n">9</span><span class="l"><span class="dot d-ok"></span>진행 가능</span></div>
-    <div class="tile wait"><span class="n">2</span><span class="l"><span class="dot d-wait"></span>승인 대기</span></div>
+    <div class="tile ok"><span class="n">8</span><span class="l"><span class="dot d-ok"></span>진행 가능</span></div>
+    <div class="tile wait"><span class="n">3</span><span class="l"><span class="dot d-wait"></span>승인 대기</span></div>
     <div class="tile fb"><span class="n">0</span><span class="l"><span class="dot d-fb"></span>피드백 반영</span></div>
     <div class="tile stall"><span class="n">0</span><span class="l"><span class="dot d-stall"></span>정체(차단)</span></div>
     <div class="tile hold"><span class="n">1</span><span class="l"><span class="dot d-hold"></span>보류(사장 지시)</span></div>
@@ -143,11 +143,17 @@
 
   <div class="callout">
     <span class="k">교수 조치 필요</span>
-    <span class="v"><b>차단 게이트 2건</b>(크레인·OSCPlanner) + <b>비차단 확인 5건</b>. 07-26 결정으로 noise-mgmt·실내자재적치 2건 해소.
-      <span class="cat">차단 — 결정 전까지 과업 정지 · 2건</span>
-      <span class="li">① <b>[신규 07-27·최우선] 크레인 대여계획 — T1 입력 데이터 정정판 채택 + T3a/T3c/T4 재실행 승인</b>. (a) 채택+재실행 <b>[추천]</b> / (b) 기존 유지 / (c) 병기 상태로 T5만 정정판. <b>RQ·방법론·코드는 전부 불변 — 입력 데이터 오류 정정</b>이며, 기존 DB는 LTM 1100-5.2 붐열 13개 중 2개만 담고 있었고 <code>boom15.2</code> 등재 오기까지 드러남. 유지하면 T3a/T3c/T4가 틀린 입력 위에 남음. <b>늦을수록 재작업 규모 증가.</b></span>
-      <span class="li">② <b>OSCPlanner 결정 6건</b>(07-25 상정) — 기술 스택 승인 · 게이트#1 방향 선택(후보 4) · DRL 연구 범위 확인 · 이동식 로드차트 데이터 · FGI 일정 · 선결과제 S2·S4 원문. ※ 로드차트 건은 크레인 07-27 파싱분(LTM 1100 13구성 191점)으로 <b>부분 대체 가능성</b> — 오후 대조 예정.</span>
-      <span class="cat">비차단 확인 (진행은 계속됨) · 5건</span>
+    <span class="v"><b>차단 게이트 3건</b>(실내자재적치·크레인·OSCPlanner) + <b>비차단 확인 7건</b>. 07-26 결정으로 noise-mgmt·실내자재적치 모델정정 2건 해소.
+      <span class="cat">차단 — 결정 전까지 과업 정지 · 3건</span>
+      <span class="li">⓪ <b>[신규 07-27 오후·최우선] 실내자재적치 — <code>w_min 1.45 m</code> 갈림길.</b> 07-26 결정 ②를 그대로 구현·실행했더니 <b>합성·실 IFC 두 평면 모두 로봇 도달 셀 0 → 13/13 배송불가</b>로 최적화가 공전합니다 <b>[검증 · 실장 독립 재실행 재현]</b>. 병목은 바닥면적이 아니라 <b>문 유효폭 0.9 m</b>. 선택지 A(로봇 사양을 케이스 파라미터로) / B(초소형 로봇 실측 확보) / C(이동·도킹 clearance 분리) / D(세대 밖 복도로 재범위화).
+        <br>⚠️ <b>실장 사전 리뷰</b>: 결과가 말하는 것은 "로봇이 못 들어간다"가 아니라 <b>"MiR250(창고형 AMR)이 잘못된 프록시"</b>입니다 — 같은 프로젝트 <code>robot-survey</code> §0이 <b>고레로보틱스 GL-1 = 공동주택용 마감자재 로봇(2026.6 적용 예정)</b>을 등재해 두었습니다. 아파트에 들어가는 로봇은 <b>이미 실재</b>합니다. 따라서 <b>D는 반대</b>(실재 상용 로봇과 모순되는 결론), <b>A 단독도 위험</b>(실재와 동떨어진 스윕) → <b>[실장 권고] A + B 병행 + C 채택</b>.
+        <br>📎 <b>사장 자료 요청 1건</b>: 고레로보틱스 GL-1/ND-1의 <b>본체 치수·요구 통행폭·payload</b>(전량 미공개) — 업계 접점으로 구해주시면 이 프로젝트 최대 <code>[미확인]</code>이 한 번에 해소됩니다.</span>
+      <span class="li">① <b>크레인 대여계획 — T1 입력 데이터 정정판 채택 + T3a/T3c/T4 재실행 승인</b>. (a) 채택+재실행 <b>[추천 유지]</b> / (b) 기존 유지 / (c) T5만 정정판. <b>RQ·방법론·코드 전부 불변 — 입력 데이터 오류 정정</b>(기존 DB가 LTM 1100-5.2 붐열 13개 중 2개만 수록 + <code>boom15.2</code> 등재 오기).
+        <br>✅ <b>[07-27 오후 정정] 긴급도 하향.</b> 전 기간(day 0~93) 백그라운드가 12:51 완주 — 축소본의 <b>−19.7~−21.2%가 전 기간에서는 0.00~0.86%</b>로 축소됐고 P0는 T3c 저장값과 <b>0원 차이</b>입니다 <b>[검증]</b>. 오전 요약이 <code>축소본</code> 한정어를 빠뜨린 것은 <b>실장 요약 손실</b>이며 정정합니다. 재작업 규모가 커지지 않으므로 <b>시간을 두고 판단하셔도 됩니다.</b> (반증 아님 — 발견 ④의 손익분기 <b>t*≈33.8일</b>이 두 지평을 모두 사전 예측)</span>
+      <span class="li">② <b>OSCPlanner 결정 6건</b>(07-25 상정) — 기술 스택 승인 · 게이트#1 방향 선택(후보 4) · DRL 연구 범위 확인 · 이동식 로드차트 데이터 · FGI 일정 · 선결과제 S2·S4 원문. ✅ <b>[07-27 오후 대조 완료]</b> 로드차트 건은 <b>부분 해소</b> — 크레인 파싱분으로 용량 ≥15 t 판정 가능 반경이 <b>9.0 m → 16.0 m</b>, 구성 4종 → <b>13구성 191점</b> <b>[검증]</b>. <b>250 t급만 잔존</b>.</span>
+      <span class="cat">비차단 확인 (진행은 계속됨) · 7건</span>
+      <span class="li">⓵ <b>[신규] FM — T4c 부분그래프 매칭 착수 여부</b>(게이트#3에서 "성능 본 뒤 판단"으로 유보하신 건, 이제 근거 확보). <b>[추천: 미착수]</b> — 기대 상한이 부재-level 오답 53건 중 최대 16건인데 <b>실 단위 정확도가 이미 96.9%</b>. Limitations·future work 서술로 충분하며 T3b·T5는 무관하게 진행.</span>
+      <span class="li">⓶ <b>[신규] 소음원예측 F8-B</b> — 이동원 <code>count</code> 의미 분리(대수 산정 불변, <code>presence_frac</code>·<code>n_onsite_expected</code> 파생 필드만 출력 추가). <b>[추천: 채택]</b> 사전등록 D2 피판정 값 불변이라 판정 무영향. 실행은 T4(ii) 판정 후 F6과 묶기 권장.</span>
       <span class="li">③ <b>소음논문 — 백본 §3 POD 3편 증보 여부.</b> ⚠️ 사장 07-26 구술 "<b>논문당 POD 1개</b>"와 충돌 소지 → 병렬 증보 대신 <b>POD 1개 안에서 frontier 갱신</b> 형태를 권고(Hong 2020 RSER은 최근접 선행이라 §2에서 다루는 것 자체는 필수).</span>
       <span class="li">④ <b>소음논문 — 원문 3편 도서관 요청</b>(Hong 2020 RSER · Ibrahim 2018 · Pinsonnault 2021). 전량 유료로 자동 확보 실패 <b>[검증]</b>. 표=<code>pod-candidates_2026-07-22.md</code> §D, 수령 폴더 <code>소음논문-지수유진/refs/</code> 준비 완료.</span>
       <span class="li">⑤ <b>소음원예측 F5</b> — 사전등록 D4가 "대수 UNRESOLVED 종의 가동"을 미규정 → 실장이 D2 준용해 <b>판정 제외·별도 보고</b>로 확정(실 케이스 도착 <b>전</b> 확정이라 사후 조정 아님). 판독 확인만 부탁드립니다.</span>
@@ -172,17 +178,17 @@
     <table>
       <thead><tr><th>분야</th><th>과제</th><th>주제</th><th>단계</th><th>상태</th><th>다음 할 일</th></tr></thead>
       <tbody>
-        <tr><td class="fld">① BIM</td><td class="name">FM<div class="persona">CM 대학원생 D</div></td><td>사진 → BIM 하자 귀속</td><td><span class="stage">연구수행 · 게이트#3 피드백✓(T3b 먼저) · T# 3/9</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next"><b>T3b 실사진 파일럿 — [사장 액션] 28동 6층 촬영</b>(준비물 제공 완료·<b>[검증]</b> 07-27 미도착) · 재사용 라이선스 확인</td></tr>
+        <tr><td class="fld">① BIM</td><td class="name">FM<div class="persona">CM 대학원생 D</div></td><td>사진 → BIM 하자 귀속</td><td><span class="stage">연구수행 · <b>★T6a 완료</b>(합성 300건 general results) · T# 4/9</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next"><b>T5 착수</b> / <b>[사장 액션] 28동 6층 촬영 대기</b>(<b>[검증]</b> 07-27 미도착) · <b>[신규] T4c 착수 여부 확인</b>(추천: 미착수 — 실 단위 정확도 96.9%)</td></tr>
         <tr><td class="fld">② OSC·모듈러</td><td class="name">모듈러팩토리<div class="persona">CM 대학원생 A</div></td><td>생산 로그 기반 대응형 재스케줄</td><td><span class="stage">연구수행 · <b>★T3b 완료</b>(E1~E8 전항 PASS)</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next"><b>T3c 본체</b> — K복제 CRN 확률 평가·강건 선택. ⚠️ 착수 시 <b>CRN 짝짓기 파손 이슈</b> 선대응</td></tr>
         <tr><td class="fld">② OSC·모듈러</td><td class="name">모듈러-DfMA평가<div class="persona">CM 대학원생 F · 진입 B</div></td><td>모듈러 DfMA 자동 채점</td><td><span class="stage">연구수행 · <b>★T2a 완료</b>(단위테스트 14/14) · T# 4/11</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next">T2b(sub-score 산정 엔진) + j_ref 산출 · Class B 고정은 각색 원본 파싱 직후</td></tr>
         <tr><td class="fld">③ 관리자동화</td><td class="name">크레인 대여계획<div class="persona">CM 대학원생 C</div></td><td>이기종 크레인 플릿 대여</td><td><span class="stage">연구수행 · <b>★T5 축 P 완료</b>·검산 109 PASS (5/7)</span></td><td><span class="badge b-wait"><span class="dot d-wait"></span>승인 대기</span></td><td class="next">⛔ <b>T1 정정판 채택 결정 대기</b>(추천 a=채택+재실행) → T3a/T3c/T4 재실행 체인 → T5 잔여 축</td></tr>
-        <tr><td class="fld">③ 관리자동화</td><td class="name">LAS-주간시공계획<div class="persona">CM 대학원생 I · 진입 A</div></td><td>주간 look-ahead 스케줄 자동 수립</td><td><span class="stage">연구수행 · ★게이트#2 승인✓ · T1✓ (1/13)</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next">🔺<b>오후 최우선(이월 2일째)</b> T2 — KB 스키마(<b>+★07-25 기준정보 축</b>, 실내자재와 공용) + 인스턴스 생성기</td></tr>
-        <tr><td class="fld">③ 관리자동화</td><td class="name">플랜트-4D양중조달<div class="persona">CM 대학원생 J · 진입 A</div></td><td>EPC 스케줄 연동 장비 조달 + 4D 양중</td><td><span class="stage">gap-analysis · <b>★원활성 지표 v0✓</b>(F1~F4)</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next">로드차트 실물화·원활성 4D 뷰어 노출 / <b>실 케이스 수령 시 파서 교체</b></td></tr>
-        <tr><td class="fld">④ 로보틱스</td><td class="name">실내자재적치<div class="persona">CM 대학원생 B</div></td><td>로봇 배송 자재 적치</td><td><span class="stage">연구수행 · <b>★정정 게이트 해소</b>(07-26) · T# 3/7</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next">🔺<b>오후 2순위</b> T1 개정(①③+w_min 1.45m 단일) → optimizer 재구현 → T2b/T2c 재실행</td></tr>
-        <tr><td class="fld">⑤ 소음관리</td><td class="name">소음원예측<div class="persona">CM 대학원생 H · 진입 A</div></td><td>일정 기반 소음원 예측</td><td><span class="stage">연구수행 · <b>★T4(i) 보강 완료</b>(구성 8종·불변식 8종 PASS) (4/8)</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next">F1 후속 동시대수 상한 메모 → noise 소비 규약 → T5 프로토콜 / <b>T4(ii)는 REQ-3 수령 후</b></td></tr>
+        <tr><td class="fld">③ 관리자동화</td><td class="name">LAS-주간시공계획<div class="persona">CM 대학원생 I · 진입 A</div></td><td>주간 look-ahead 스케줄 자동 수립</td><td><span class="stage">연구수행 · <b>★T2 완료</b>(V1~V10 OK·pytest 28/28) (2/13)</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next"><b>T3a 시뮬레이션 Env</b>(+AWP 케이스 52건 이식). ★자재 readiness를 <code>delivered</code>∧<code>locatable</code>로 분해 — <b>적치 프로젝트와의 인터페이스가 스키마에 실체화</b></td></tr>
+        <tr><td class="fld">③ 관리자동화</td><td class="name">플랜트-4D양중조달<div class="persona">CM 대학원생 J · 진입 A</div></td><td>EPC 스케줄 연동 장비 조달 + 4D 양중</td><td><span class="stage">gap-analysis · <b>★원활성 4D 뷰어 노출✓</b>(스모크 PASS·헤드리스 렌더 실측)</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next">로드차트 실물화(freecranespecs) → 이후 <b>gap-analysis 문헌 축 앞당겨 착수</b> / 실 케이스 수령 시 파서 교체</td></tr>
+        <tr><td class="fld">④ 로보틱스</td><td class="name">실내자재적치<div class="persona">CM 대학원생 B</div></td><td>로봇 배송 자재 적치</td><td><span class="stage">연구수행 · <b>★T1 v2·optimizer 재구현✓</b>(pytest 27/27) · T# 3/7</span></td><td><span class="badge b-wait"><span class="dot d-wait"></span>승인 대기</span></td><td class="next">⛔ <b>[신규 차단] w_min 1.45m에서 로봇 세대 진입 불가</b> — 선택지 A~D 결정 대기(실장 권고 A+B 병행). T2b·T2c·T3 전부 이 결정에 종속</td></tr>
+        <tr><td class="fld">⑤ 소음관리</td><td class="name">소음원예측<div class="persona">CM 대학원생 H · 진입 A</div></td><td>일정 기반 소음원 예측</td><td><span class="stage">연구수행 · <b>★F1 후속 메모·noise 소비 규약✓</b>(F8 항등식 12/12) (4/8)</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next"><b>T5 프로토콜 초안 → Horseshoe 백본</b>(3덩어리 규칙 적용) / <b>T4(ii)는 REQ-3 수령 후</b>(봉인 유지)</td></tr>
         <tr><td class="fld">② OSC·모듈러</td><td class="name">OSCPlanner<div class="persona">신규 07-25 · 개발+연구</div></td><td>OSC 통합 계획 도구(이동식 중심 양중·야적·출하)</td><td><span class="stage">주제탐색 · 사전조사✓·방향 후보 4건</span></td><td><span class="badge b-wait"><span class="dot d-wait"></span>승인 대기</span></td><td class="next">⛔ <b>사장 결정 6건 대기</b>(기술 스택·게이트#1 방향·DRL 범위 등) → Phase 0 착수</td></tr>
         <tr><td class="fld">② OSC·모듈러</td><td class="name">모듈러-공장현장연동<div class="persona">신규 · 진입 A</div></td><td>공장 출하 ↔ 현장 양중 폐루프</td><td><span class="stage">주제탐색 · <b>원문 3/3 확보✓</b>(07-27 확인)</span></td><td><span class="badge b-hold"><span class="dot d-hold"></span>보류</span></td><td class="next"><b>Boss 착수 지시 대기</b> — 트리거 도래까지 본작업 금지. <b>보조 작업 잔여 0건</b></td></tr>
-        <tr><td class="fld">⑤ 소음관리</td><td class="name">research-noise-mgmt<div class="persona">CM 대학원생 E</div></td><td>건설소음 저감 최적화</td><td><span class="stage">연구수행 · <b>★게이트#3 통과</b>(07-26, 3건 전부 승인) · T# 4/7</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next">🔺<b>오후 3순위</b> T3b 마감(안 ⓐ 구현·회귀 확인) → T4 착수(+ⓑ 경로 민감도 1축)</td></tr>
+        <tr><td class="fld">⑤ 소음관리</td><td class="name">research-noise-mgmt<div class="persona">CM 대학원생 E</div></td><td>건설소음 저감 최적화</td><td><span class="stage">연구수행 · <b>★T3b 완료·T4 착수</b>(전 스위트 201건 PASS) · T# 4/7</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next"><b>T4 실험 매트릭스 구현</b>(I1/I2·약 112 run). 신규: 원문 내적 불일치 2건(장비 단가 354배·SS lag 4↔11일)</td></tr>
         <tr><td class="fld">⑤ 소음관리</td><td class="name">소음-지수유진<div class="persona">공저 · 김지수·이유진</div></td><td>방음벽 경제성 재평가</td><td><span class="stage">논문작성 · <b>★§1·§2·§3·§4.1 완료</b> (11/12)</span></td><td><span class="badge b-ok"><span class="dot d-ok"></span>진행 가능</span></td><td class="next">§4.2~4.4 → §5(자체 산출물·외부 대기 없음). ⚠️ <b>§2를 3덩어리 규칙으로 1회 재점검</b></td></tr>
       </tbody>
     </table>
